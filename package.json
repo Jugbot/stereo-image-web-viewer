@@ -13,12 +13,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^9.99.7",
+    "@react-three/fiber": "^8.15.19",
+    "@react-three/xr": "^5.7.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "three": "^0.162.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
+    "@types/three": "^0.162.0",
+    "@types/webxr": "^0.5.14",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react-swc": "^3.5.0",
@@ -32,6 +38,10 @@
   },
   "precommit": {
     "silent": true,
-    "run": ["check-types", "format", "lint:fix"]
+    "run": [
+      "check-types",
+      "format",
+      "lint:fix"
+    ]
   }
 }
