@@ -10,7 +10,7 @@ export function VRImages({ leftEyeImage = null, rightEyeImage = null }: VRImages
   const { viewport } = useThree();
 
   // Calculate the width and height based on the viewport
-  const width = viewport.width / 2;
+  const width = viewport.width;
   const height = viewport.height;
 
   return (

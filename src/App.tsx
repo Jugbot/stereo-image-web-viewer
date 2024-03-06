@@ -25,6 +25,7 @@ import { VRImages } from "./Images";
 function App() {
   const [leftEyeImage, setLeftEyeImage] = useState<string | null>(null);
   const [rightEyeImage, setRightEyeImage] = useState<string | null>(null);
+  const [imageDistance, setImageDistance] = useState<number>(10);
 
   const handleLeftEyeImageChange: ChangeEventHandler<HTMLInputElement> = (
     event
@@ -52,6 +53,12 @@ function App() {
     setRightEyeImage(temp);
   }
 
+  const handleImageDistanceChange: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    setImageDistance(Number(event.target.value));
+  }
+
   return (
     <>
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '8px', padding: '8px'}}>
@@ -72,6 +79,11 @@ function App() {
           onChange={handleRightEyeImageChange}
         />
         <button onClick={handleSwapImages}>Swap images</button>
+        <input value={imageDistance} onChange={handleImageDistanceChange} type="range" min="0" max="20" step="1" />
+        <div style={{display: 'flex'}}>
+          <img src={leftEyeImage ?? undefined} alt="Left Eye" style={{height: '4in'}}/>
+          <img src={rightEyeImage ?? undefined} alt="Right Eye" style={{height: '4in'}} />
+        </div>
       </div>
       <VRButton />
       <Canvas>
@@ -85,7 +97,7 @@ function App() {
             <meshBasicMaterial color="blue" />
           </mesh> */}
           <ScreenSpace
-            depth={10} // Distance from camera
+            depth={imageDistance} // Distance from camera
           >
             <VRImages
               leftEyeImage={leftEyeImage}
