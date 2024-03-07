@@ -10,12 +10,14 @@
     "lint:fix": "yarn run lint --fix",
     "check-types": "tsc --noEmit",
     "format": "prettier --write .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "husky"
   },
   "dependencies": {
     "@react-three/drei": "^9.99.7",
     "@react-three/fiber": "^8.15.19",
     "@react-three/xr": "^5.7.1",
+    "lint-staged": "^15.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "three": "^0.162.0"
@@ -29,19 +31,19 @@
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "pre-commit": "^1.2.2",
+    "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
   },
-  "precommit": {
-    "silent": true,
-    "run": [
-      "check-types",
-      "format",
-      "lint:fix"
+  "lint-staged": {
+    "*": [
+      "yarn run check-types --",
+      "prettier --write",
+      "yarn run lint --"
     ]
   }
 }

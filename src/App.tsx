@@ -3,24 +3,8 @@ import { Canvas } from "@react-three/fiber";
 import { Controllers, Hands, VRButton, XR } from "@react-three/xr";
 import { ChangeEventHandler, useState } from "react";
 import "./App.css";
-import { VRImages } from "./Images";
+import { VRImages } from "./VRImages";
 
-// function Eye() {
-//   const { referenceSpace} = useXR();
-//   const pose = frame.getViewerPose(referenceSpace);
-//   for (const view of pose.views) {
-//     const viewport = glLayer.getViewport(view);
-//     gl.viewport(viewport.x, viewport.y, viewport.width, viewport.height);
-
-//     if (view.eye === 'left') {
-//       // Render the image to the left eye
-//       renderImageToEye(view, 'left');
-//     } else if (view.eye === 'right') {
-//       // Render the image to the right eye
-//       renderImageToEye(view, 'right');
-//     }
-//   }
-// }
 
 function App() {
   const [leftEyeImage, setLeftEyeImage] = useState<string | null>(null);
@@ -28,7 +12,7 @@ function App() {
   const [imageDistance, setImageDistance] = useState<number>(10);
 
   const handleLeftEyeImageChange: ChangeEventHandler<HTMLInputElement> = (
-    event
+    event,
   ) => {
     if (!event.target.files) {
       setLeftEyeImage(null);
@@ -38,7 +22,7 @@ function App() {
   };
 
   const handleRightEyeImageChange: ChangeEventHandler<HTMLInputElement> = (
-    event
+    event,
   ) => {
     if (!event.target.files) {
       setRightEyeImage(null);
@@ -51,17 +35,25 @@ function App() {
     const temp = leftEyeImage;
     setLeftEyeImage(rightEyeImage);
     setRightEyeImage(temp);
-  }
+  };
 
   const handleImageDistanceChange: ChangeEventHandler<HTMLInputElement> = (
-    event
+    event,
   ) => {
     setImageDistance(Number(event.target.value));
-  }
+  };
 
   return (
     <>
-      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '8px', padding: '8px'}}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "start",
+          gap: "8px",
+          padding: "8px",
+        }}
+      >
         <label htmlFor="left-eye">Upload Left Eye Image</label>
         <input
           type="file"
@@ -79,10 +71,25 @@ function App() {
           onChange={handleRightEyeImageChange}
         />
         <button onClick={handleSwapImages}>Swap images</button>
-        <input value={imageDistance} onChange={handleImageDistanceChange} type="range" min="0" max="20" step="1" />
-        <div style={{display: 'flex'}}>
-          <img src={leftEyeImage ?? undefined} alt="Left Eye" style={{height: '4in'}}/>
-          <img src={rightEyeImage ?? undefined} alt="Right Eye" style={{height: '4in'}} />
+        <input
+          value={imageDistance}
+          onChange={handleImageDistanceChange}
+          type="range"
+          min="0"
+          max="20"
+          step="1"
+        />
+        <div style={{ display: "flex" }}>
+          <img
+            src={leftEyeImage ?? undefined}
+            alt="Left Eye"
+            style={{ height: "4in" }}
+          />
+          <img
+            src={rightEyeImage ?? undefined}
+            alt="Right Eye"
+            style={{ height: "4in" }}
+          />
         </div>
       </div>
       <VRButton />
