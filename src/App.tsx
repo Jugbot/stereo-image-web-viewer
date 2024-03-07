@@ -5,7 +5,6 @@ import { ChangeEventHandler, useState } from "react";
 import "./App.css";
 import { VRImages } from "./VRImages";
 
-
 function App() {
   const [leftEyeImage, setLeftEyeImage] = useState<string | null>(null);
   const [rightEyeImage, setRightEyeImage] = useState<string | null>(null);

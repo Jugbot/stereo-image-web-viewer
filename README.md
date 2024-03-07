@@ -1,1 +1,1 @@
-Demo: https://jugbot.github.io/stereo-image-web-viewer/ 
+Demo: https://jugbot.github.io/stereo-image-web-viewer/
